@@ -1,16 +1,17 @@
 import React from 'react';
 import SwiperContainer from '../components/SwiperContainer';
+import BillsCategory from '../components/BillsCategory';
 
 const Home = () => {
     return (
-        <div>
-            <section>
+        <>
+            <section >
                 <SwiperContainer></SwiperContainer>
             </section>
-            <section>
-                
+            <section className='max-w-[1440px] w-full mx-auto my-20 p-2 lg:px-10'>
+                <BillsCategory></BillsCategory>
             </section>
-        </div>
+        </>
     );
 };
 
