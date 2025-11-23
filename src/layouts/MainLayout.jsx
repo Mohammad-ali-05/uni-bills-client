@@ -1,12 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router';
+import Navbar from '../components/Navbar';
 
 const MainLayout = () => {
     return (
         <div>
             <header>
-                <nav>
-
+                <nav className='relative'>
+                    <Navbar></Navbar>
                 </nav>
             </header>
             <main>

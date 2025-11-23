@@ -1,9 +1,29 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
+  const user = true;
+
+  const links = (
+    <>
+      <NavLink to={"/"} className={({isActive})=> isActive ? `underline` : ``}>
+        <li className="font-medium">Home</li>
+      </NavLink>
+      <NavLink to={"/bills"} className={({isActive})=> isActive ? `underline` : ``}>
+        <li className="font-medium">Bills</li>
+      </NavLink>
+      {user && (
+        <NavLink to={"/my-pay-bills"} className={({isActive})=> isActive ? `underline` : ``}>
+          <li className="font-medium">My pay bills</li>
+        </NavLink>
+      )}
+    </>
+  );
+
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm">
+      {" "}
+      <div className="navbar z-10 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,53 +44,46 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              className="menu menu-sm bg-white dropdown-content absolute rounded-box z-1 mt-3 w-52 p-2 shadow">
+              {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="text-xl font-bold">UniBills</a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end gap-2 lg:gap-5">
+          <div className="navbar-end hidden lg:flex">
+            <ul className="menu menu-horizontal flex gap-3 px-1">{links}</ul>
+          </div>
+          {user ? (
+            <div className="dropdown dropdown-end dropdown-click">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
+              </div>
+
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-white absolute rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li>
+                  <a className="justify-between">
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <a>Logout</a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <a className="btn text-gray-400">Button</a>
+          )}
         </div>
       </div>
     </div>
