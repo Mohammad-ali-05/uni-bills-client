@@ -4,23 +4,39 @@ import AuthContext from "../contexts/AuthContext";
 import Login from "../pages/Login";
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
 
   const links = (
     <>
-      <NavLink to={"/"} className={({isActive})=> isActive ? `underline` : ``}>
+      <NavLink
+        to={"/"}
+        className={({ isActive }) => (isActive ? `underline` : ``)}>
         <li className="font-medium">Home</li>
       </NavLink>
-      <NavLink to={"/bills"} className={({isActive})=> isActive ? `underline` : ``}>
+      <NavLink
+        to={"/bills"}
+        className={({ isActive }) => (isActive ? `underline` : ``)}>
         <li className="font-medium">Bills</li>
       </NavLink>
       {user && (
-        <NavLink to={"/my-pay-bills"} className={({isActive})=> isActive ? `underline` : ``}>
+        <NavLink
+          to={"/my-pay-bills"}
+          className={({ isActive }) => (isActive ? `underline` : ``)}>
           <li className="font-medium">My pay bills</li>
         </NavLink>
       )}
     </>
   );
+
+  const handleLogout = () => {
+    logoutUser()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -50,7 +66,9 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to={"/"} className="text-xl font-bold">UniBills</Link>
+          <Link to={"/"} className="text-xl font-bold">
+            UniBills
+          </Link>
         </div>
         <div className="navbar-end gap-2 lg:gap-5">
           <div className="navbar-end hidden lg:flex">
@@ -74,17 +92,17 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-white absolute rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li>
-                  <a className="justify-between">
-                    Profile
-                  </a>
+                  <a className="justify-between">Profile</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <p onClick={handleLogout}>Logout</p>
                 </li>
               </ul>
             </div>
           ) : (
-            <Link to={"/login"} className="btn text-gray-600">login</Link>
+            <Link to={"/login"} className="btn text-gray-600">
+              login
+            </Link>
           )}
         </div>
       </div>

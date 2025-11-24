@@ -118,7 +118,7 @@ const Register = () => {
                     />
                     <p
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute top-3.5 right-7 text-sm">
+                      className="absolute top-3.5 right-7 z-10 text-sm">
                       {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                     </p>
                   </div>
