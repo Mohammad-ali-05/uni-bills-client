@@ -13,7 +13,7 @@ const Home = () => {
                 <BillsCategory></BillsCategory>
             </section>
             <section>
-
+                
             </section>
             <section className='max-w-[1440px] w-full mx-auto my-20 p-2 lg:px-10'>
                 <FAQ></FAQ>
