@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import AuthContext from "../contexts/AuthContext";
+import { useLocation } from "react-router";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  const location = useLocation()
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  console.log(location)
 
   const handleLogin = (e) => {
     e.preventDefault();

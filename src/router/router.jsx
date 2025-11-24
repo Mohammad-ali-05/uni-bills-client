@@ -6,6 +6,10 @@ import AllBills from "../pages/AllBills";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthProvider from "../contexts/AuthProvider";
+import Profile from "../pages/Profile";
+import PublicRoute from "./PublicRoute";
+import PrivateRoute from "./PrivateRoute";
+import MyPayBills from "../pages/MyPayBills";
 
 const Router = createBrowserRouter([
   {
@@ -25,12 +29,36 @@ const Router = createBrowserRouter([
         element: <AllBills></AllBills>,
       },
       {
+        path: "/my-pay-bills",
+        element: (
+          <PrivateRoute>
+            <MyPayBills></MyPayBills>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/login",
-        element: <Login></Login>,
+        element: (
+          <PublicRoute>
+            <Login></Login>
+          </PublicRoute>
+        ),
       },
       {
         path: "/register",
-        element: <Register></Register>,
+        element: (
+          <PublicRoute>
+            <Register></Register>
+          </PublicRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
     ],
   },
