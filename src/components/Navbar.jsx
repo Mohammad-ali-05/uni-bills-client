@@ -100,7 +100,7 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            <Link to={"/login"} className="btn text-gray-600">
+            <Link to={"/login"} className="btn btn-sm btn-outline btn-primary">
               login
             </Link>
           )}

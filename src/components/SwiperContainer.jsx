@@ -16,10 +16,10 @@ const SwiperContainer = () => {
         spaceBetween={50}
         slidesPerView={1}
         navigation>
-        <SwiperSlide><img className="w-full" src="/public/electricity provider.png" alt="" /></SwiperSlide>
-        <SwiperSlide><img className="w-full" src="/public/gas provider.png" alt="" /></SwiperSlide>
-        <SwiperSlide><img className="w-full" src="/public/water provider.png" alt="" /></SwiperSlide>
-        <SwiperSlide><img className="w-full" src="/public/internet provider.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img className="w-full" src="/electricity provider.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img className="w-full" src="/gas provider.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img className="w-full" src="/water provider.png" alt="" /></SwiperSlide>
+        <SwiperSlide><img className="w-full" src="/internet provider.png" alt="" /></SwiperSlide>
       </Swiper>
     </div>
   );

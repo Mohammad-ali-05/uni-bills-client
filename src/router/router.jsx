@@ -10,6 +10,7 @@ import Profile from "../pages/Profile";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import MyPayBills from "../pages/MyPayBills";
+import BillsDetails from "../pages/BillsDetails";
 
 const Router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ const Router = createBrowserRouter([
       {
         path: "/bills",
         element: <AllBills></AllBills>,
+      },
+      {
+        path: "/bills-details/:id",
+        element: (
+          // <PrivateRoute>
+            <BillsDetails></BillsDetails>
+          // {/* </PrivateRoute> */}
+        ),
       },
       {
         path: "/my-pay-bills",
