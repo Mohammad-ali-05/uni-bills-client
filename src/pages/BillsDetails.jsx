@@ -9,6 +9,15 @@ const BillsDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    fetch(`http://localhost:3000/bill-details/${id}`)
+      .then((res) => res.json())
+      .then((data) => setBillData(data))
+      .catch((error) => {
+        console.log(error.code, error.message);
+      });
+  }, [id]);
+
+  useEffect(() => {
     if (!billData.date) return;
 
     const current = new Date();
@@ -27,17 +36,6 @@ const BillsDetails = () => {
       setBillMessage("Only Current month Bill can be paid");
     }
   }, [billData.date]);
-
-  console.log(billData);
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/bill-details/${id}`)
-      .then((res) => res.json())
-      .then((data) => setBillData(data))
-      .catch((error) => {
-        console.log(error.code, error.message);
-      });
-  }, [id]);
 
   return (
     <div>

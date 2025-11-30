@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
+import toast from "react-hot-toast";
 
 const PayBillModal = ({ billData }) => {
-    const { user } = useContext(AuthContext);
-    
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,11 +26,21 @@ const PayBillModal = ({ billData }) => {
 
     console.log("Payment Data:", paymentData);
 
-    // You can POST this to your server
-    // fetch('/api/pay', { method: 'POST', body: JSON.stringify(paymentData) })
-
-    // Close modal manually
-    document.getElementById("pay_bill_modal").close();
+    fetch("http://localhost:3000/pay-bills", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(paymentData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data);
+          toast.success("Bill has been paid")
+        e.target.reset();
+        document.getElementById("pay_bill_modal").close();
+      })
+      .catch((error) => console.log(error.message));
   };
 
   return (
