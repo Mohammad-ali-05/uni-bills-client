@@ -2,21 +2,23 @@ import React, { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import toast from "react-hot-toast";
 
-const PayBillModal = ({ billData }) => {
+const PayBillModal = ({ billData, update, setUpdate }) => {
+  console.log(billData);
   const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const amount = e.target.elements.amount.value;
     const username = e.target.elements.username.value;
     const address = e.target.elements.address.value;
     const phone = e.target.elements.phone.value;
     const additionalInfo = e.target.elements.additionalInfo.value;
 
-    const paymentData = {
+    const updateData = {
       email: user?.email,
-      billId: billData?._id,
-      amount: billData?.amount,
+      billId: billData?.billId,
+      amount,
       username,
       address,
       phone,
@@ -24,21 +26,22 @@ const PayBillModal = ({ billData }) => {
       additionalInfo,
     };
 
-    console.log("Payment Data:", paymentData);
+    console.log("Payment Data:", updateData);
 
-    fetch("http://localhost:3000/pay-bills", {
-      method: "POST",
+    fetch(`http://localhost:3000/update-bill/${billData._id}`, {
+      method: "PUT",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(paymentData),
+      body: JSON.stringify(updateData),
     })
       .then((res) => res.json())
       .then((data) => {
-          console.log(data);
-          toast.success("Bill has been paid")
+        console.log(data);
+        toast.success("Bill has been Updated");
+        setUpdate(!update);
         e.target.reset();
-        document.getElementById("pay_bill_modal").close();
+        document.getElementById("update_bill_modal").close();
       })
       .catch((error) => console.log(error.message));
   };
@@ -46,7 +49,7 @@ const PayBillModal = ({ billData }) => {
   return (
     <>
       <dialog
-        id="pay_bill_modal"
+        id="update_bill_modal"
         className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Pay Bill</h3>
@@ -70,7 +73,7 @@ const PayBillModal = ({ billData }) => {
               </label>
               <input
                 type="text"
-                value={billData?._id || ""}
+                value={billData?.billId || ""}
                 readOnly
                 className="input input-bordered w-full"
               />
@@ -82,8 +85,8 @@ const PayBillModal = ({ billData }) => {
               </label>
               <input
                 type="text"
-                value={billData?.amount || 0}
-                readOnly
+                defaultValue={billData?.amount}
+                name="amount"
                 className="input input-bordered w-full"
               />
             </div>
@@ -106,6 +109,7 @@ const PayBillModal = ({ billData }) => {
               </label>
               <input
                 type="text"
+                defaultValue={billData?.username || ""}
                 name="username"
                 placeholder="Enter your name"
                 className="input input-bordered w-full"
@@ -120,6 +124,7 @@ const PayBillModal = ({ billData }) => {
               <input
                 type="text"
                 name="address"
+                defaultValue={billData?.address || ""}
                 placeholder="Enter your address"
                 className="input input-bordered w-full"
                 required
@@ -133,6 +138,7 @@ const PayBillModal = ({ billData }) => {
               <input
                 type="tel"
                 name="phone"
+                defaultValue={billData?.phone || ""}
                 placeholder="Enter your phone"
                 className="input input-bordered w-full"
                 required
@@ -152,13 +158,13 @@ const PayBillModal = ({ billData }) => {
 
             <div className="modal-action justify-end">
               <button type="submit" className="btn btn-primary">
-                Pay bill
+                Update bill
               </button>
               <button
                 type="button"
                 className="btn btn-outline"
                 onClick={() =>
-                  document.getElementById("pay_bill_modal").close()
+                  document.getElementById("update_bill_modal").close()
                 }>
                 Close
               </button>
