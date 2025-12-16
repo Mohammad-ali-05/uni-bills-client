@@ -1,6 +1,45 @@
 import React from "react";
+import Swal from "sweetalert2";
 
-const PayBillsRow = ({ bill, index, setBillData }) => {
+const PayBillsRow = ({
+  bill,
+  index,
+  setBillData,
+  deleteBill,
+  setDeleteBill,
+}) => {
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/delete-bill/${bill._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setDeleteBill(!deleteBill);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            console.log(data);
+          })
+          .catch((error) => console.log(error.message));
+      }
+    });
+  };
+
   return (
     <>
       <tr key={bill._id}>
@@ -22,10 +61,7 @@ const PayBillsRow = ({ bill, index, setBillData }) => {
             Update
           </button>
 
-          <button
-            className="btn btn-xs btn-error"
-            //   onClick={() => handleDelete(bill._id)}
-          >
+          <button className="btn btn-xs btn-error" onClick={handleDelete}>
             Delete
           </button>
         </td>

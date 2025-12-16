@@ -5,9 +5,11 @@ import UpdateBillModal from "../components/UpdateBillModal";
 
 const MyPayBills = () => {
   const { user } = useContext(AuthContext);
+  const [deleteBill, setDeleteBill] = useState(false);
   const [update, setUpdate] = useState(false);
   const [myBills, setMyBills] = useState([]);
   const [billData, setBillData] = useState({});
+  console.log(myBills)
 
   useEffect(() => {
     fetch(`http://localhost:3000/my-pay-bills?email=${user.email}`)
@@ -17,12 +19,13 @@ const MyPayBills = () => {
         console.log(error.message);
         console.log(error.code);
       });
-  }, [user.email, update]);
+  }, [user.email, update, deleteBill]);
 
   const handleDownload = () => {};
 
   return (
     <div className="max-w-[1440px] w-full  mx-auto my-20 p-2 lg:px-10">
+      <title>My pay bills</title>
       <div className="p-6">
         {/* Summary Section */}
         <div className="flex items-center justify-between mb-6">
@@ -41,7 +44,7 @@ const MyPayBills = () => {
           <p className="text-lg font-semibold">
             Total Amount Paid:{" "}
             <span className="text-primary">
-              ৳ {myBills.reduce((acc, bill) => acc + bill.amount, 0)}
+              ৳ {myBills.reduce((acc, bill) => acc + Number(bill.amount), 0)}
             </span>
           </p>
         </div>
@@ -68,6 +71,8 @@ const MyPayBills = () => {
                   key={index}
                   bill={bill}
                   index={index}
+                  deleteBill={deleteBill}
+                  setDeleteBill={setDeleteBill}
                   setBillData={setBillData}></PayBillsRow>
               ))}
             </tbody>

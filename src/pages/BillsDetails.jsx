@@ -39,6 +39,7 @@ const BillsDetails = () => {
 
   return (
     <div>
+      <title>{`${billData.category} - ${billData.title}`}</title>
       <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl my-10">
         <div>
           <img

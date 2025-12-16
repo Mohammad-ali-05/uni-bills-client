@@ -22,6 +22,7 @@ const AllBills = () => {
 
   return (
     <section className="max-w-[1440px] w-full  mx-auto my-20 p-2 lg:px-10">
+      <title>All bills</title>
       <div className="my-10">
         <h2 className="font-semibold text-5xl text-center">All bills</h2>
       </div>

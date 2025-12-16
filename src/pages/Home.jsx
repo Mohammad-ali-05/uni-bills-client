@@ -6,6 +6,7 @@ import FAQ from '../components/FAQ';
 const Home = () => {
     return (
         <>
+            <title>Uni bills - Home</title>
             <section >
                 <SwiperContainer></SwiperContainer>
             </section>
