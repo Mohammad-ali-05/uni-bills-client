@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import PayBillsRow from "../components/PayBillsRow";
 import UpdateBillModal from "../components/UpdateBillModal";
+import Loading from "./Loading";
 
 const MyPayBills = () => {
   const { user } = useContext(AuthContext);
@@ -20,6 +21,11 @@ const MyPayBills = () => {
         console.log(error.code);
       });
   }, [user.email, update, deleteBill]);
+
+  if (!myBills) {
+    return <Loading></Loading>
+  }
+
 
   const handleDownload = () => {};
 

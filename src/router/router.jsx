@@ -32,9 +32,10 @@ const Router = createBrowserRouter([
       {
         path: "/bills-details/:id",
         element: (
-          // <PrivateRoute>
+          <PrivateRoute>
             <BillsDetails></BillsDetails>
-          // {/* </PrivateRoute> */}
+            //{" "}
+          </PrivateRoute>
         ),
       },
       {

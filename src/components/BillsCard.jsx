@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const BillsCard = ({billData}) => {
   return (
     <div>
-      <div className="card bg-base-100 w-96 shadow-lg h-full mx-auto hover:shadow-lg transition p-2">
+      <div className="card bg-base-100 shadow-lg h-full mx-auto hover:shadow-lg transition p-2">
         {/* Image */}
         <figure className="rounded-xl overflow-hidden h-48">
           <img

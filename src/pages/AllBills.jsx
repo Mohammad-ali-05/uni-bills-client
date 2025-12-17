@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import BillsCard from "../components/BillsCard";
+import Loading from "./Loading";
 
 const AllBills = () => {
   const [billsData, setBillsData] = useState();
@@ -12,6 +13,10 @@ const AllBills = () => {
       .then((data) => setBillsData(data))
       .catch((error) => console.log(error.code, error.message));
   }, [selectedCategory]);
+
+  if (!billsData) {
+    return <Loading></Loading>
+  }
 
   console.log(billsData);
   console.log(selectedCategory);
@@ -47,7 +52,7 @@ const AllBills = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-3 bg-gray-300 rounded-xl gap-5 py-10 px-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 bg-gray-300 rounded-xl gap-5 py-10 px-5">
         {billsData?.map((billData, index) => (
           <BillsCard key={index} billData={billData}></BillsCard>
         ))}

@@ -9,7 +9,6 @@ const BillsCategory = () => {
         navigate("/bills", {state: billName})
     }
 
-
     return (
         <div>
             <div className='my-10'>

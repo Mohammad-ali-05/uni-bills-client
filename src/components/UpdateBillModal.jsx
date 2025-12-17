@@ -3,17 +3,18 @@ import AuthContext from "../contexts/AuthContext";
 import toast from "react-hot-toast";
 
 const PayBillModal = ({ billData, update, setUpdate }) => {
-  console.log(billData);
   const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const amount = e.target.elements.amount.value;
+    const amount = Number(e.target.elements.amount.value);
     const username = e.target.elements.username.value;
     const address = e.target.elements.address.value;
     const phone = e.target.elements.phone.value;
     const additionalInfo = e.target.elements.additionalInfo.value;
+
+    console.log(amount)
 
     const updateData = {
       email: user?.email,
@@ -84,7 +85,7 @@ const PayBillModal = ({ billData, update, setUpdate }) => {
                 <span className="label-text text-lg">Amount</span>
               </label>
               <input
-                type="text"
+                type="number"
                 defaultValue={billData?.amount}
                 name="amount"
                 className="input input-bordered w-full"

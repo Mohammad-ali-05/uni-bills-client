@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import PayBillModal from "../components/PayBillModal";
+import Loading from "./Loading";
 
 const BillsDetails = () => {
   const [billData, setBillData] = useState({});
@@ -19,15 +20,15 @@ const BillsDetails = () => {
 
   useEffect(() => {
     if (!billData.date) return;
-
+    
     const current = new Date();
     const billDate = new Date(billData.date);
-
+    
     const currentYear = current.getFullYear();
     const currentMonth = current.getMonth();
     const billYear = billDate.getFullYear();
     const billMonth = billDate.getMonth();
-
+    
     if (billYear === currentYear && billMonth === currentMonth) {
       setDisableBill(false);
       setBillMessage("Pay bill");
@@ -36,7 +37,11 @@ const BillsDetails = () => {
       setBillMessage("Only Current month Bill can be paid");
     }
   }, [billData.date]);
-
+  
+  if (!billData) {
+    return <Loading></Loading>
+  }
+  
   return (
     <div>
       <title>{`${billData.category} - ${billData.title}`}</title>
