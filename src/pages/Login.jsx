@@ -23,7 +23,6 @@ const Login = () => {
               setErrorMessage("Invalid email or password")
           }
       })
-      
   };
 
   return (

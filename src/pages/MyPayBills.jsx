@@ -13,7 +13,7 @@ const MyPayBills = () => {
   const [update, setUpdate] = useState(false);
   const [myBills, setMyBills] = useState([]);
   const [billData, setBillData] = useState({});
-  console.log(myBills);
+  // console.log(myBills);
 
   useEffect(() => {
     fetch(`http://localhost:3000/my-pay-bills?email=${user.email}`)
@@ -31,7 +31,7 @@ const MyPayBills = () => {
 
   const handleDownload = () => {
     if (myBills) {
-      toast("Noting to download!! Please pay some bills.")
+      toast("Nothing to download!! Please pay some bills.")
       return
     }
 

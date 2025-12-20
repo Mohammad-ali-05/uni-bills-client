@@ -6,6 +6,7 @@ const BillsCategory = () => {
 
     const handleBillsButtonClicked = (e) => {
         const billName = e.currentTarget.querySelector("h3").textContent
+        console.log(billName)
         navigate("/bills", {state: billName})
     }
 
@@ -18,19 +19,19 @@ const BillsCategory = () => {
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
                 <div onClick={handleBillsButtonClicked} className='flex flex-col justify-center items-center gap-2 border-2 rounded-lg shadow-lg mx-auto w-full p-4 transform transition duration-300 ease-in-out hover:scale-105'>
                     <img className='w-20' src="https://cdn-icons-png.flaticon.com/128/616/616494.png" alt="" />
-                    <h3 className='font-bold  text-xl'>Electric Bill</h3>
+                    <h3 className='font-bold  text-xl'>Electricity</h3>
                 </div>
                 <div onClick={handleBillsButtonClicked} className='flex flex-col justify-center items-center gap-2 border-2 rounded-lg shadow-lg mx-auto w-full p-4 transform transition duration-300 ease-in-out hover:scale-105'>
                     <img className='w-20' src="https://cdn-icons-png.flaticon.com/128/427/427112.png" alt="" />
-                    <h3 className='font-bold  text-xl'>Water Bill</h3>
+                    <h3 className='font-bold  text-xl'>Water</h3>
                 </div>
                 <div onClick={handleBillsButtonClicked} className='flex flex-col justify-center items-center gap-2 border-2 rounded-lg shadow-lg mx-auto w-full p-4 transform transition duration-300 ease-in-out hover:scale-105'>
                     <img className='w-20' src="https://cdn-icons-png.flaticon.com/128/4535/4535728.png" alt="" />
-                    <h3 className='font-bold text-xl'>Gas Bill</h3>
+                    <h3 className='font-bold text-xl'>Gas</h3>
                 </div>
                 <div onClick={handleBillsButtonClicked} className='flex flex-col justify-center items-center gap-2 border-2 rounded-lg shadow-lg mx-auto w-full p-4 transform transition duration-300 ease-in-out hover:scale-105'>
                     <img className='w-20' src="https://cdn-icons-png.flaticon.com/128/2099/2099193.png" alt="" />
-                    <h3 className='font-bold  text-xl'>Internet Bill</h3>
+                    <h3 className='font-bold  text-xl'>Internet</h3>
                 </div>
             </div>
         </div>

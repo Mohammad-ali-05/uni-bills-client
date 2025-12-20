@@ -32,14 +32,13 @@ const Navbar = () => {
   const handleLogout = () => {
     logoutUser()
     .then((result) => {
-      console.log(result);
+      /* console.log(result); */
     })
     .catch((error) => {
       console.log(error);
     });
   };
-  
-  // console.log(user)
+
   return (
     <div>
       {" "}
@@ -91,7 +90,6 @@ const Navbar = () => {
                         : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                     }
                   />
-                  { console.log(user)}
                 </div>
               </div>
 

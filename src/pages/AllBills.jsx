@@ -2,23 +2,30 @@ import React, { useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import BillsCard from "../components/BillsCard";
 import Loading from "./Loading";
+import { useLocation } from "react-router";
 
 const AllBills = () => {
+  const location = useLocation();
+  const defaultCategory = location.state || ""
   const [billsData, setBillsData] = useState();
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/bills${selectedCategory ? `?category=${selectedCategory}` : ""}`)
+    fetch(
+      `http://localhost:3000/bills${
+        selectedCategory ? `?category=${selectedCategory}` : ""
+      }`
+    )
       .then((res) => res.json())
       .then((data) => setBillsData(data))
       .catch((error) => console.log(error.code, error.message));
   }, [selectedCategory]);
 
   if (!billsData) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
-  console.log(billsData);
+  // console.log(billsData);
   console.log(selectedCategory);
 
   const handleCategory = (e) => {
@@ -46,8 +53,8 @@ const AllBills = () => {
             className="border border-gray-300 rounded p-2">
             <option value="">All Categories</option>
             <option value="Electricity">Electricity</option>
-            <option value="Gas">Gas</option>
             <option value="Water">Water</option>
+            <option value="Gas">Gas</option>
             <option value="Internet">Internet</option>
           </select>
         </div>
