@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
 
+  
   const links = (
     <>
       <NavLink
@@ -20,24 +21,25 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <NavLink
-          to={"/my-pay-bills"}
-          className={({ isActive }) => (isActive ? `underline` : ``)}>
+        to={"/my-pay-bills"}
+        className={({ isActive }) => (isActive ? `underline` : ``)}>
           <li className="font-medium">My pay bills</li>
         </NavLink>
       )}
     </>
   );
-
+  
   const handleLogout = () => {
     logoutUser()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
-
+  
+  // console.log(user)
   return (
     <div>
       {" "}
@@ -83,8 +85,13 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    src={
+                      user.photoURL
+                        ? user.photoURL
+                        : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    }
                   />
+                  { console.log(user)}
                 </div>
               </div>
 
@@ -92,7 +99,9 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-white absolute rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li>
-                  <Link to={"/profile"} className="justify-between">Profile</Link>
+                  <Link to={"/profile"} className="justify-between">
+                    Profile
+                  </Link>
                 </li>
                 <li>
                   <p onClick={handleLogout}>Logout</p>

@@ -3,6 +3,9 @@ import AuthContext from "../contexts/AuthContext";
 import PayBillsRow from "../components/PayBillsRow";
 import UpdateBillModal from "../components/UpdateBillModal";
 import Loading from "./Loading";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+import toast from "react-hot-toast";
 
 const MyPayBills = () => {
   const { user } = useContext(AuthContext);
@@ -10,7 +13,7 @@ const MyPayBills = () => {
   const [update, setUpdate] = useState(false);
   const [myBills, setMyBills] = useState([]);
   const [billData, setBillData] = useState({});
-  console.log(myBills)
+  console.log(myBills);
 
   useEffect(() => {
     fetch(`http://localhost:3000/my-pay-bills?email=${user.email}`)
@@ -23,11 +26,52 @@ const MyPayBills = () => {
   }, [user.email, update, deleteBill]);
 
   if (!myBills) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
+  const handleDownload = () => {
+    if (myBills) {
+      toast("Noting to download!! Please pay some bills.")
+      return
+    }
 
-  const handleDownload = () => {};
+    const doc = new jsPDF();
+
+    doc.text("My Paid Bills Report", 14, 15);
+
+    autoTable(doc, {
+      startY: 25,
+      head: [
+        [
+          "No.",
+          "Username",
+          "Email",
+          "Bill ID",
+          "Amount (৳)",
+          "Phone",
+          "Address",
+          "Date",
+          "Additional Info",
+        ],
+      ],
+      body: myBills?.map((bill, index) => [
+        index + 1,
+        bill.username,
+        bill.email,
+        bill.billId,
+        bill.amount,
+        bill.phone,
+        bill.address,
+        bill.date,
+        bill.additionalInfo || "—",
+      ]),
+      theme: "grid",
+      styles: { fontSize: 6 },
+      headStyles: { fillColor: [41, 128, 185] },
+    });
+
+    doc.save("my-paid-bills.pdf");
+  };
 
   return (
     <div className="max-w-[1440px] w-full  mx-auto my-20 p-2 lg:px-10">

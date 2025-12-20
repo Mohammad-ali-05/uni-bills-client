@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const {setUser, createUser, updateUserProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -15,13 +16,19 @@ const Register = () => {
     const password = e.target.elements.password.value;
 
     console.log(name, photoUrl, email, password);
+    const userProfile = {
+      displayName: name,
+      photoURL: photoUrl
+    }
 
     if (errorMessage) {
       return;
     }
 
     createUser(email, password)
-      .then((result) => {
+      .then(async (result) => {
+        await updateUserProfile(userProfile)
+        setUser({...result.user, ...userProfile})
         console.log(result.user);
       })
       .catch((error) => {
@@ -129,6 +136,7 @@ const Register = () => {
                   <button className="btn btn-neutral mt-4">Register</button>
                 </fieldset>
               </form>
+              <p>Already have an account? <Link to={"/login"} className="hover:text-blue-500 hover:underline">login</Link>.</p>
             </div>
           </div>
         </div>

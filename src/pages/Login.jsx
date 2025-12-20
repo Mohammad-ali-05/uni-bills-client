@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import AuthContext from "../contexts/AuthContext";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -72,6 +72,7 @@ const Login = () => {
                   <button className="btn btn-neutral mt-4">Login</button>
                 </fieldset>
               </form>
+              <p>Don't have an account? <Link to={"/register"} className="hover:text-blue-500 hover:underline">register</Link>.</p>
             </div>
           </div>
         </div>
