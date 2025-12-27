@@ -26,7 +26,7 @@ const AllBills = () => {
   }
 
   // console.log(billsData);
-  console.log(selectedCategory);
+  // console.log(selectedCategory);
 
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);

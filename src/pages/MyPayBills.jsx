@@ -30,7 +30,7 @@ const MyPayBills = () => {
   }
 
   const handleDownload = () => {
-    if (myBills) {
+    if (!myBills.length) {
       toast("Nothing to download!! Please pay some bills.")
       return
     }

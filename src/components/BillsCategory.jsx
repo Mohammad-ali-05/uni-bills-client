@@ -6,7 +6,6 @@ const BillsCategory = () => {
 
     const handleBillsButtonClicked = (e) => {
         const billName = e.currentTarget.querySelector("h3").textContent
-        console.log(billName)
         navigate("/bills", {state: billName})
     }
 

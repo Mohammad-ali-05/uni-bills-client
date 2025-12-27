@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, ScrollRestoration } from 'react-router';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Toaster } from 'react-hot-toast';
@@ -13,6 +13,7 @@ const MainLayout = () => {
                 </nav>
             </header>
             <main>
+                <ScrollRestoration></ScrollRestoration>
                 <Outlet></Outlet>
                 <Toaster></Toaster>
             </main>

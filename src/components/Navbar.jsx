@@ -31,7 +31,7 @@ const Navbar = () => {
   
   const handleLogout = () => {
     logoutUser()
-    .then((result) => {
+    .then((/* result */) => {
       /* console.log(result); */
     })
     .catch((error) => {
