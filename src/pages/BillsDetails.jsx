@@ -46,16 +46,13 @@ const BillsDetails = () => {
     <div>
       <title>{`${billData.category} - ${billData.title}`}</title>
       <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl my-10">
-        <div>
+        <div className="mb-4">
           <img
             src={billData.image}
             alt="Bill"
             className="w-full max-w-sm rounded-lg border mt-1"
           />
         </div>
-
-        <h1 className="text-2xl font-semibold mb-6">Bill Details</h1>
-
         <div className="space-y-4">
           <div>
             <p className="text-gray-500 text-sm">Title</p>

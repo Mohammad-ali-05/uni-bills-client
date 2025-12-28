@@ -1,12 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import AuthContext from "../contexts/AuthContext";
 import Login from "../pages/Login";
 
 const Navbar = () => {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "tight");
   const { user, logoutUser } = useContext(AuthContext);
 
-  
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleThemeChange = (checked) => {
+    console.log(checked);
+    setTheme(checked ? "dark" : "light");
+  };
+
   const links = (
     <>
       <NavLink
@@ -21,22 +32,22 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <NavLink
-        to={"/my-pay-bills"}
-        className={({ isActive }) => (isActive ? `underline` : ``)}>
+          to={"/my-pay-bills"}
+          className={({ isActive }) => (isActive ? `underline` : ``)}>
           <li className="font-medium">My pay bills</li>
         </NavLink>
       )}
     </>
   );
-  
+
   const handleLogout = () => {
     logoutUser()
-    .then((/* result */) => {
-      /* console.log(result); */
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((/* result */) => {
+        /* console.log(result); */
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -71,7 +82,7 @@ const Navbar = () => {
             UniBills
           </Link>
         </div>
-        <div className="navbar-end gap-2 lg:gap-5">
+        <div className="navbar-end gap-2 ">
           <div className="navbar-end hidden lg:flex">
             <ul className="menu menu-horizontal flex gap-3 px-1">{links}</ul>
           </div>
@@ -111,6 +122,51 @@ const Navbar = () => {
               login
             </Link>
           )}
+          <label className="toggle text-base-content">
+            <input
+              onClick={(e) => handleThemeChange(e.target.checked)}
+              type="checkbox"
+              checked={theme === "dark" ? true : false}
+              value="synthwave"
+              className="theme-controller"
+            />
+
+            <svg
+              aria-label="sun"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24">
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                stroke="currentColor">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </g>
+            </svg>
+
+            <svg
+              aria-label="moon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24">
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                stroke="currentColor">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </g>
+            </svg>
+          </label>
         </div>
       </div>
     </div>

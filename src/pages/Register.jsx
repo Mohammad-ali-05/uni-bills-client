@@ -50,7 +50,7 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         setUser(result.user);
-        // navigate("/");
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error.code);

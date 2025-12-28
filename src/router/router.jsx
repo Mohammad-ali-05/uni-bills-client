@@ -34,7 +34,6 @@ const Router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BillsDetails></BillsDetails>
-            //{" "}
           </PrivateRoute>
         ),
       },
