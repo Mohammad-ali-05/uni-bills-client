@@ -80,7 +80,6 @@ const MyPayBills = () => {
         {/* Summary Section */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">My Paid Bills</h2>
-
           <button onClick={handleDownload} className="btn btn-primary">
             Download Report
           </button>

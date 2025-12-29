@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router";
 
-const BillsCard = ({billData}) => {
+const BillsCard = ({ billData }) => {
   return (
     <div>
-      <div className="card bg-base-100 shadow-lg h-full mx-auto hover:shadow-lg transition p-2">
+      <div className="card bg-base-100 shadow-lg h-full border border-gray-300 mx-auto hover:shadow-lg p-2 transform transition duration-300 ease-in-out hover:scale-103">
         {/* Image */}
         <figure className="rounded-xl overflow-hidden h-48">
           <img
@@ -31,10 +31,18 @@ const BillsCard = ({billData}) => {
           <p className="text-lg font-bold text-teal-600">৳ {billData.amount}</p>
 
           {/* Button */}
-          <div className="card-actions justify-end mt-3">
-            <Link to={`/bills-details/${billData._id}`}><button className="btn btn-sm btn-outline btn-primary">
-              See Details
-            </button></Link>
+          <div className="card-actions justify-between mt-3">
+            <p className="text-gray-500">📅 {new Date(billData.date).toLocaleDateString("en-US", {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              })}
+            </p>
+            <Link to={`/bills-details/${billData._id}`}>
+              <button className="btn btn-sm btn-outline btn-primary">
+                See Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>

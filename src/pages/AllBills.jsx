@@ -6,8 +6,8 @@ import { useLocation } from "react-router";
 
 const AllBills = () => {
   const location = useLocation();
-  const defaultCategory = location.state || ""
-  const [billsData, setBillsData] = useState();
+  const defaultCategory = location.state || "";
+  const [billsData, setBillsData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const AllBills = () => {
             id="category"
             onChange={handleCategory}
             value={selectedCategory}
-            className="border border-gray-300 rounded p-2">
+            className="select select-bordered w-full max-w-xs">
             <option value="">All Categories</option>
             <option value="Electricity">Electricity</option>
             <option value="Water">Water</option>
@@ -59,7 +59,7 @@ const AllBills = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 bg-gray-300 rounded-xl gap-5 py-10 px-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3  rounded-xl gap-5 py-10 px-5">
         {billsData?.map((billData, index) => (
           <BillsCard key={index} billData={billData}></BillsCard>
         ))}
