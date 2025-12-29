@@ -8,11 +8,11 @@ const MainLayout = () => {
     return (
         <>
             <header>
-                <nav className='relative'>
+                <nav>
                     <Navbar></Navbar>
                 </nav>
             </header>
-            <main>
+            <main className="pt-16">
                 <ScrollRestoration></ScrollRestoration>
                 <Outlet></Outlet>
                 <Toaster></Toaster>

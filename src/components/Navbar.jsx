@@ -53,7 +53,7 @@ const Navbar = () => {
   return (
     <div>
       {" "}
-      <div className="navbar z-10 shadow-sm lg:px-10">
+      <div className="navbar fixed top-0 z-50 shadow-sm lg:px-10 bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -106,7 +106,7 @@ const Navbar = () => {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content border border-gray-300 absolute rounded-box z-1 mt-3 w-52 p-2 shadow">
+                className="menu menu-sm dropdown-content bg-base-100 border border-gray-300 absolute rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li>
                   <Link to={"/profile"} className="justify-between">
                     Profile
