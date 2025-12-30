@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import AuthContext from "../contexts/AuthContext";
 import Login from "../pages/Login";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "tight");
@@ -95,6 +96,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
+                    data-tooltip-id="user-tooltip"
                     src={
                       user.photoURL
                         ? user.photoURL
@@ -103,7 +105,7 @@ const Navbar = () => {
                   />
                 </div>
               </div>
-
+              <Tooltip className="bg-base-100" id="user-tooltip" content={user.displayName} />
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 border border-gray-300 absolute rounded-box z-1 mt-3 w-52 p-2 shadow">
