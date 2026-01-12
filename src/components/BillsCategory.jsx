@@ -13,7 +13,7 @@ const BillsCategory = () => {
         <div>
             <div className='my-10'>
                 <h2 className='font-semibold text-5xl text-center'>Bills category</h2>
-                <p className='text-center text-xl text-gray-600 mx-2 sm:mx-10 md:mx-20 lg:mx-30 xl:mx-48 my-5'>Explore and manage all your utility bills easily. Select a category below to view, pay, or update your bills for Electricity, Water, Gas, and Internet.</p>
+                <p className='text-center text-xl text-gray-500 mx-2 sm:mx-10 md:mx-20 lg:mx-30 xl:mx-48 my-5'>Explore and manage all your utility bills easily. Select a category below to view, pay, or update your bills for Electricity, Water, Gas, and Internet.</p>
             </div>
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-10'>
                 <div onClick={handleBillsButtonClicked} className='flex flex-col justify-center items-center gap-2 border-2 rounded-lg shadow-lg mx-auto w-full p-4 transform transition duration-300 ease-in-out hover:scale-105'>

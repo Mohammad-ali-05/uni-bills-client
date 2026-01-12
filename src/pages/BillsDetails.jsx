@@ -45,7 +45,7 @@ const BillsDetails = () => {
   return (
     <div>
       <title>{`${billData.category} - ${billData.title}`}</title>
-      <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl my-10">
+      <div className="max-w-3xl mx-auto p-6 bg-base-100 border border-gray-300 shadow-lg rounded-xl my-10">
         <div className="mb-4">
           <img
             src={billData.image}

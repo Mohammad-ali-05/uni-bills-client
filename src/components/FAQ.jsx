@@ -7,7 +7,7 @@ const FAQ = () => {
         <h2 className="font-semibold text-5xl text-center">
           Frequently Asked Questions
         </h2>
-        <p className="text-center  text-xl text-gray-600 mx-2 sm:mx-10 md:mx-20 lg:mx-30 xl:mx-48 my-5">
+        <p className="text-center  text-xl text-gray-500 mx-2 sm:mx-10 md:mx-20 lg:mx-30 xl:mx-48 my-5">
           Some of the common questions our users have about managing and paying
           their utility bills. Find answers quickly and get the most out of your
           account.

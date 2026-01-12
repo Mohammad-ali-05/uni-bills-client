@@ -53,7 +53,7 @@ const PayBillModal = ({ billData, update, setUpdate }) => {
         id="update_bill_modal"
         className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">Pay Bill</h3>
+          <h3 className="font-bold text-lg">Update Bill</h3>
 
           <form onSubmit={handleSubmit} className="space-y-3 mt-4">
             <div>
