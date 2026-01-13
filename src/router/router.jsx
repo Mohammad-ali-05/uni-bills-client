@@ -11,6 +11,7 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import MyPayBills from "../pages/MyPayBills";
 import BillsDetails from "../pages/BillsDetails";
+import ErrorPage404 from "../pages/ErrorPage404";
 
 const Router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "*",
+        element:<ErrorPage404></ErrorPage404>
+      }
     ],
   },
 ]);

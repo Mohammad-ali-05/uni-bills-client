@@ -128,7 +128,7 @@ const Navbar = () => {
             <input
               onClick={(e) => handleThemeChange(e.target.checked)}
               type="checkbox"
-              checked={theme === "dark" ? true : false}
+              defaultChecked={theme === "dark" ? true : false}
               value="synthwave"
               className="theme-controller"
             />

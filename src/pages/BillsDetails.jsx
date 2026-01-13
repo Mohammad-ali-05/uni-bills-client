@@ -20,15 +20,15 @@ const BillsDetails = () => {
 
   useEffect(() => {
     if (!billData.date) return;
-    
+
     const current = new Date();
     const billDate = new Date(billData.date);
-    
+
     const currentYear = current.getFullYear();
     const currentMonth = current.getMonth();
     const billYear = billDate.getFullYear();
     const billMonth = billDate.getMonth();
-    
+
     if (billYear === currentYear && billMonth === currentMonth) {
       setDisableBill(false);
       setBillMessage("Pay bill");
@@ -37,11 +37,11 @@ const BillsDetails = () => {
       setBillMessage("Only Current month Bill can be paid");
     }
   }, [billData.date]);
-  
+
   if (!billData) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
-  
+
   return (
     <div>
       <title>{`${billData.category} - ${billData.title}`}</title>
@@ -83,7 +83,15 @@ const BillsDetails = () => {
 
           <div>
             <p className="text-gray-500 text-sm">Date</p>
-            <p className="text-lg font-medium">{billData.date}</p>
+            <p className="text-lg font-medium">
+              {new Date(billData.date).toLocaleDateString("en-US", {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                timeZone: "Asia/Dhaka",
+              })}
+            </p>
           </div>
         </div>
 
