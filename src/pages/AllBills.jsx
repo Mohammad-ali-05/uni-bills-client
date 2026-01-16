@@ -21,7 +21,7 @@ const AllBills = () => {
       .catch((error) => console.log(error.code, error.message));
   }, [selectedCategory]);
 
-  if (!billsData) {
+  if (!billsData.length) {
     return <Loading></Loading>;
   }
 

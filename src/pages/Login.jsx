@@ -2,14 +2,15 @@ import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import AuthContext from "../contexts/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
+import ForgetPasswordModal from "../components/ForgetPasswordModal";
 
 const Login = () => {
   const { setUser, loginUser, googleLogin } = useContext(AuthContext);
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  console.log(location);
+  const [loginEmail, setLoginEmail] = useState("")
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,8 +19,8 @@ const Login = () => {
 
     loginUser(email, password)
       .then((result) => {
-        navigate(location.state ? location.state : "/")
-        setUser(result.user)
+        navigate(location.state ? location.state : "/");
+        setUser(result.user);
       })
       .catch((error) => {
         console.log(error.message);
@@ -27,6 +28,13 @@ const Login = () => {
           setErrorMessage("Invalid email or password");
         }
       });
+  };
+
+  const clearError = (e) => {
+    const email = e.target.value
+    setLoginEmail(email)
+    setErrorMessage("");
+
   };
 
   const handleGoogleLogin = () => {
@@ -60,24 +68,38 @@ const Login = () => {
                   {/* Email */}
                   <label className="label">Email</label>
                   <input
+                    onChange={clearError}
                     type="email"
                     name="email"
                     className="input"
                     placeholder="Enter your email"
+                    required
                   />
                   {/* Password */}
                   <label className="label">Password</label>
                   <div className="relative">
                     <input
+                      onChange={clearError}
                       type={showPassword ? "text" : "password"}
                       name="password"
                       className="input"
                       placeholder="Enter your password"
+                      required
                     />
                     <p
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute top-3.5 right-7 z-10 text-sm">
                       {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                    </p>
+                  </div>
+                  <div
+                    onClick={() => {
+                      document
+                        .getElementById("forget_password_modal")
+                        .showModal();
+                    }}>
+                    <p className="hover:text-blue-500 hover:underline">
+                      Forget password?
                     </p>
                   </div>
                   <div className="text-red-600">
@@ -134,6 +156,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ForgetPasswordModal email={loginEmail}></ForgetPasswordModal>
     </div>
   );
 };

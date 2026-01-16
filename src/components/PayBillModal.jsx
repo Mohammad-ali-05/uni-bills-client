@@ -11,7 +11,6 @@ const PayBillModal = ({ billData }) => {
     const username = e.target.elements.username.value;
     const address = e.target.elements.address.value;
     const phone = e.target.elements.phone.value;
-    const additionalInfo = e.target.elements.additionalInfo.value;
 
     const paymentData = {
       email: user?.email,
@@ -20,8 +19,7 @@ const PayBillModal = ({ billData }) => {
       username,
       address,
       phone,
-      date: new Date().toLocaleDateString(),
-      additionalInfo,
+      date: new Date().toLocaleDateString()
     };
 
     console.log("Payment Data:", paymentData);
@@ -136,17 +134,6 @@ const PayBillModal = ({ billData }) => {
                 placeholder="Enter your phone"
                 className="input input-bordered w-full"
                 required
-              />
-            </div>
-
-            <div>
-              <label className="label">
-                <span className="label-text text-lg">Additional Info</span>
-              </label>
-              <textarea
-                name="additionalInfo"
-                placeholder="Optional information"
-                className="textarea textarea-bordered w-full"
               />
             </div>
 
