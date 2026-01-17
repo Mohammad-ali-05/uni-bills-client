@@ -16,7 +16,9 @@ const MyPayBills = () => {
   // console.log(myBills);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-pay-bills?email=${user.email}`)
+    fetch(
+      `https://uni-bills-server.vercel.app/my-pay-bills?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyBills(data))
       .catch((error) => {
@@ -25,14 +27,14 @@ const MyPayBills = () => {
       });
   }, [user.email, update, deleteBill]);
 
-  if (!myBills) {
-    return <Loading></Loading>;
-  }
+  // if (!myBills.length) {
+  //   return <Loading></Loading>;
+  // }
 
   const handleDownload = () => {
     if (!myBills.length) {
-      toast("Nothing to download!! Please pay some bills.")
-      return
+      toast("Nothing to download!! Please pay some bills.");
+      return;
     }
 
     const doc = new jsPDF();

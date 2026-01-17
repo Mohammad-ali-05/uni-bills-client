@@ -10,7 +10,7 @@ const BillsDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/bill-details/${id}`)
+    fetch(`https://uni-bills-server.vercel.app/bill-details/${id}`)
       .then((res) => res.json())
       .then((data) => setBillData(data))
       .catch((error) => {
@@ -38,7 +38,7 @@ const BillsDetails = () => {
     }
   }, [billData.date]);
 
-  if (!billData) {
+  if (!Object.keys(billData).length) {
     return <Loading></Loading>;
   }
 

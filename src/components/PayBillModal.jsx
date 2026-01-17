@@ -19,12 +19,12 @@ const PayBillModal = ({ billData }) => {
       username,
       address,
       phone,
-      date: new Date().toLocaleDateString()
+      date: new Date().toLocaleDateString(),
     };
 
-    console.log("Payment Data:", paymentData);
+    // console.log("Payment Data:", paymentData);
 
-    fetch("http://localhost:3000/pay-bills", {
+    fetch("https://uni-bills-server.vercel.app/pay-bills", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -33,8 +33,8 @@ const PayBillModal = ({ billData }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-          console.log(data);
-          toast.success("Bill has been paid")
+        console.log(data);
+        toast.success("Bill has been paid");
         e.target.reset();
         document.getElementById("pay_bill_modal").close();
       })

@@ -13,7 +13,7 @@ const PayBillModal = ({ billData, update, setUpdate }) => {
     const address = e.target.elements.address.value;
     const phone = e.target.elements.phone.value;
 
-    console.log(amount)
+    console.log(amount);
 
     const updateData = {
       email: user?.email,
@@ -27,7 +27,7 @@ const PayBillModal = ({ billData, update, setUpdate }) => {
 
     console.log("Payment Data:", updateData);
 
-    fetch(`http://localhost:3000/update-bill/${billData._id}`, {
+    fetch(`https://uni-bills-server.vercel.app/update-bill/${billData._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

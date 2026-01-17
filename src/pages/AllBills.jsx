@@ -12,7 +12,7 @@ const AllBills = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/bills${
+      `https://uni-bills-server.vercel.app/bills${
         selectedCategory ? `?category=${selectedCategory}` : ""
       }`
     )

@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import BillsCard from "./BillsCard";
+import Loading from "../pages/Loading";
 
 const RecentBills = () => {
   const [billsData, setBillsData] = useState([]);
-
+  
   useEffect(() => {
-    fetch(`http://localhost:3000/home`)
-      .then((res) => res.json())
-      .then((data) => setBillsData(data))
-      .catch((error) => console.log(error.code, error.message));
+    fetch(`https://uni-bills-server.vercel.app/home`)
+    .then((res) => res.json())
+    .then((data) => setBillsData(data))
+    .catch((error) => console.log(error.code, error.message));
   }, []);
+  
+  if (!billsData.length) {
+    return <Loading></Loading>
+  }
 
   return (
     <div className="max-w-[1440px] w-full  mx-auto my-20 p-2 lg:px-10">

@@ -19,7 +19,7 @@ const PayBillsRow = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/delete-bill/${bill._id}`, {
+        fetch(`https://uni-bills-server.vercel.app/delete-bill/${bill._id}`, {
           method: "DELETE",
           headers: {
             "Content-type": "application/json",
