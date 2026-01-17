@@ -27,10 +27,6 @@ const MyPayBills = () => {
       });
   }, [user.email, update, deleteBill]);
 
-  // if (!myBills.length) {
-  //   return <Loading></Loading>;
-  // }
-
   const handleDownload = () => {
     if (!myBills.length) {
       toast("Nothing to download!! Please pay some bills.");
